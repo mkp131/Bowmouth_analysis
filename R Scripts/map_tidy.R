@@ -1,7 +1,7 @@
 # Install packages
-#install.packages(c("tidyverse", "rnaturalearthhires", "sf", "ggplot2", "ggrepel",
+install.packages(c("tidyverse", "rnaturalearthhires", "sf", "ggplot2", "ggrepel",
                    'rnaturalearth'))
-#install.packages("rnaturalearthhires")
+install.packages("rnaturalearthhires")
 
 # Load packages
 # package for data manipulation
@@ -18,7 +18,9 @@ library(sf)
 # package for loading world map
 library(rnaturalearth)
 library(rnaturalearthhires)
-# if cant load above then use devtools::install_github("ropensci/rnaturalearthhires"
+library(rnaturalearthdata)
+
+# if cant load above then use devtools::install_github("ropensci/rnaturalearthhires")
 library(viridisLite)
 library(ggspatial)
 
@@ -39,15 +41,15 @@ names(world)
 # latitude and latitude of boundaries
 # With my region coordinates: Dubai to Bangladesh
 
-#world %>% ggplot() +
-#  geom_sf() +
-#  coord_sf(xlim = c(23.94462692660258, 100.25850522440837), ylim =  
- #            c(40.350447135475605, 3.1895747788411266), expand = FALSE)
+world %>% ggplot() +
+  geom_sf() +
+  coord_sf(xlim = c(23.94462692660258, 100.25850522440837), ylim =  
+             c(40.350447135475605, 3.1895747788411266), expand = FALSE)
 
 # Load csv file containing coordinates
-wedge_coord <- read_csv("Data/GPS_coord_for_R_bowmouth - consolidated.csv")
+wedge_coord <- read_csv("data/GPS_coord_for_R_bowmouth - consolidated.csv")
 spec(wedge_coord)
-wedge_coord_1 = wedge_coord[, c(3, 4, 7)]
+wedge_coord_1 = wedge_coord[, c(1, 3, 4, 7)]
 print(wedge_coord_1)
 
 # convert to sf (simple features) function: st_as_sf converts the # # coordinates to sf object we need to identify which columns are the # coordinates that need to be converted and the coordinate reference # system (crs) crs = 4326 is the most commonly used code by 
@@ -111,40 +113,37 @@ world_points
 
 
 #geom_text(data= world_points, aes(x=X, y=Y, label=name),
- #         color = "darkblue", fontface = "bold", size = 9, check_overlap = FALSE) +
+ #         color = "darkblue", fontface = "bold", check_overlap = FALSE) +
   #annotate(geom = "text", x = 12.5, y = 65, label = "Arabian Sea", 
-   #        fontface = "italic", color = "grey22", size = 4) +
-
-# adding labels
-#geom_sf_label(data=world_points,aes(label=name),
- #             nudge_x = c(1,-5.5,2,2,-1,-2,2.5,1,-7,1,4), 
-#              nudge_y = c(3.5,-8,1.5,5.5,2.5,1.5,6,-1.75,-0.5,2.5,1.5)) +
-
-# Try to nudge names to make map more readable
-#cnames$nudge_y <- -1
-#cnames$nudge_y[]
-
-
-
-#library(maps)
-cnames_df <- world[world$name = c(
-  "Saudi Arabia", "United Arab Emirates", "India", "Sri Lanka", "Bangladesh"),]
-
+   #        fontface = "italic", color = "grey22", size = 6) +
 # Final Map: pch = point characteristics, 21 is a circle with a # darker border, labs = labels, element.text() can alter font, size etc
+
+sf::sf_use_s2(FALSE)
+
+cols <- c("Sri Lanka" = "#9523D6", "Bangladesh" = "#72F12F", 
+          "Saudi Arabia" = "#FF198B", "Arabian Peninsula" = "#4653FA")
 
 bowmouth_map_colour <- world %>% 
   ggplot() +
   geom_sf(data = world, fill = land_colour, size = 0.4) +
-  geom_point(data = wedge_coord_1,
-             mapping = aes(x = Longitude, y = Latitude, size = `Number of Samples`), 
-             colour="Dark Blue",
-             fill="Blue 2",
-             pch = 21,
-             alpha = I(0.4)) + 
-  geom_text(data= world_points, aes(x=X, y=Y, label=name),
-           color = "darkblue", fontface = "bold", size = 3, check_overlap = TRUE) +
+  # geom_point(data = wedge_coord_1,
+  #            mapping = aes(x = Longitude, y = Latitude, size = `Number of Samples`), 
+  #            colour="Dark Blue",
+  #            fill="Blue 2",
+  #            pch = 21,
+  #            alpha = I(0.4)) + 
+geom_point(data = wedge_coord_1,
+           mapping = aes(x = Longitude, y = Latitude, 
+                         size = `Number of Samples`,
+                         fill = Region),
+           pch = 21,
+           alpha = I(0.8)) +
+  scale_fill_manual(values = cols,
+                    name = "Sampling Location") +
+  #geom_text(data= world_points, aes(x=X, y=Y, label=name),
+ #          color = "darkblue", fontface = "bold", check_overlap = TRUE) +
   annotate(geom = "text", x = 65, y = 12.5, label = "Arabian Sea", 
-           fontface = "italic", color = "grey22", size = 4) +
+           fontface = "italic", color = "grey22", size = 6) +
   coord_sf(xlim = c(35.94462692660258, 95.25850522440837), ylim =  
              c(32.350447135475605, 5.1895747788411266), expand = FALSE) +
   mytheme +
@@ -158,21 +157,6 @@ bowmouth_map_colour <- world %>%
         plot.title = element_text(face = "bold", size = 18)) +
   annotation_scale(location = "tr", width_hint = 0.2) +
   annotation_north_arrow(location = "tr", which_north = "true", 
-                         pad_x = unit(0.1, "in"), pad_y = unit(0.1, "in"),
-                         style = north_arrow_fancy_orienteering)
+                         pad_x = unit(0.2, "in"), pad_y = unit(0.3, "in"),
+                          style = north_arrow_fancy_orienteering)
 bowmouth_map_colour
-
-# Attempt to change shape and colour of points: first specify colours by Hex
-#cols <- c("Sri_Lanka" = "#9523D6", "Bangladesh" = "#72F12F", 
-#          "Saudi_Arabia" = "#FF198B", "Arabian_Peninsula" = "#4653FA")
-#cols
-
-# Code for colours
-#geom_point(aes(color = factor(Region))) +
-#  scale_colour_manual(values = cols)
-
-#  geom_point(shape = 21, alpha = 0.5, size = 2) +
-#  scale_colour_manual(
-#    values = cols,
-#    aesthetics = c("colour", "fill")
-
