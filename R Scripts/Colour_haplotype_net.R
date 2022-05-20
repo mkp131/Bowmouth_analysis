@@ -1,10 +1,9 @@
 #Bowmouth guitarfish CR alignment colour
+library(tidyr)
+library(dplyr)
+
 bg_cr <- read.dna("Data/Bowmouth_CR_Alignment_tidy.fasta", format = "fasta")
-bg_cr
-
 haps_cr <- haplotype(bg_cr)
-haps_cr
-
 haps_bg_cr <- haploNet(haps_cr)
 
 plot(haps_bg_cr, size = attr(haps_bg_cr, "freq"), fast = FALSE)
@@ -17,14 +16,9 @@ ind.hap_bg_cr <- with(
 ind.hap_bg_cr
 
 
-library(tidyr)
-library(dplyr)
-
 df_bg_cr <- as.data.frame(ind.hap_bg_cr)
-df_bg_cr
 
 clean_bg_cr <- df_bg_cr[df_bg_cr$Freq == 1,]
-clean_bg_cr
 
 # clean up data frame and mutate to usable titles
 df <- clean_bg_cr %>%
@@ -59,8 +53,6 @@ legend(
   text.col = 2:5
 )
 dev.off()
-
-
 
 plot(
   haps_bg_cr,

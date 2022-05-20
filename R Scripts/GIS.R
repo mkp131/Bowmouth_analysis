@@ -1,7 +1,14 @@
 # Install packages
-install.packages(c("tidyverse", "rnaturalearthhires", "sf", "ggplot2", "ggrepel",
-                   'rnaturalearth'))
+install.packages(c(
+  "tidyverse",
+  "rnaturalearthhires",
+  "sf",
+  "ggplot2",
+  "ggrepel",
+  'rnaturalearth'
+))
 install.packages("rnaturalearthhires")
+
 # Load packages
 # package for data manipulation
 library(tidyverse)

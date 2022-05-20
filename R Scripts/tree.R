@@ -30,7 +30,9 @@ source("load_alignment.R")
 
 #~~ Read in alignment
 
-seq <- readDNAStringSet("Data/fasta_files/Tree_alignment_FINAL.fasta", format="fasta")
+seq <-
+  readDNAStringSet("Data/fasta_files/Tree_alignment_FINAL.fasta", format =
+                     "fasta")
 
 # Alignment, align and trim
 # align = T if you need to align and trim your sequences, F if not
@@ -41,7 +43,8 @@ dna_bin
 
 # Visualise alignment
 
-ape::image.DNAbin(dna_bin, col = c("#CB2314", "#FAD510", "#4daf4a", "#5BBCD6", "grey", "black"))
+ape::image.DNAbin(dna_bin,
+                  col = c("#CB2314", "#FAD510", "#4daf4a", "#5BBCD6", "grey", "black"))
 
 # Convert the DNAbin object into phyDat
 
