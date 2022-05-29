@@ -124,7 +124,7 @@ meta <- as.data.frame(tree$tip.label) %>%
   unite("region", country:region) %>%
   mutate(region = gsub("_NA", "", region))
 
-species <- levels(as.factor(meta$species))
+sp <- levels(as.factor(meta$species))
 
 # levels(as.factor(meta$region))
 # meta$region <- factor(meta$region, levels(meta$region)[c(1,2,5,3,4)])
