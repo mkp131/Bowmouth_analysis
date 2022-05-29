@@ -155,7 +155,7 @@ p <- ggtree(tree, color = "black", size = 0.4) %<+% meta +
                     values = pal,
                     labels = c("*G.granulatus*",
                                "*R.ancylostoma*",
-                               "*R.annandalaei*",
+                               "*R.annandalei*",
                                "*R.australiae*",
                                "*R.jayakari*",
                                "*R.lionotus*",
