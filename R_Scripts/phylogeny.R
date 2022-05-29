@@ -124,7 +124,7 @@ meta <- as.data.frame(tree$tip.label) %>%
   unite("region", country:region) %>%
   mutate(region = gsub("_NA", "", region))
 
-sp <- levels(as.factor(meta$species))
+species <- levels(as.factor(meta$species))
 
 # levels(as.factor(meta$region))
 # meta$region <- factor(meta$region, levels(meta$region)[c(1,2,5,3,4)])
@@ -155,7 +155,7 @@ p <- ggtree(tree, color = "black", size = 0.4) %<+% meta +
                     values = pal,
                     labels = c("*G.granulatus*",
                                "*R.ancylostoma*",
-                               "*R.annandalei*",
+                               "*R.annandalaei*",
                                "*R.australiae*",
                                "*R.jayakari*",
                                "*R.lionotus*",
