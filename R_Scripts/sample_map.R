@@ -9,6 +9,11 @@ install.packages(c(
 ))
 
 install.packages("rnaturalearthhires")
+# if cant load above then use 
+#install.packages("devtools")
+#library(devtools)
+#devtools::install_github("ropensci/rnaturalearthhires")
+
 
 # Load packages
 # package for data manipulation
@@ -26,8 +31,6 @@ library(sf)
 library(rnaturalearth)
 library(rnaturalearthhires)
 library(rnaturalearthdata)
-
-# if cant load above then use devtools::install_github("ropensci/rnaturalearthhires")
 library(viridisLite)
 library(ggspatial)
 
@@ -42,9 +45,9 @@ class(world)
 
 # Load csv file containing coordinates
 wedge_coord <-
-  read_csv("data/GPS_coord_for_R_bowmouth - consolidated.csv")
+  read_csv("Data/GPS_coord_for_R_bowmouth - consolidated.csv")
 spec(wedge_coord)
-wedge_coord_1 = wedge_coord[, c(1, 3, 4, 7)]
+wedge_coord_1 = wedge_coord[, c(1, 3, 4, 7, 8)]
 print(wedge_coord_1)
 
 # st_as_sf converts coords (coord ref system crs = 4326 (for GIS data)
@@ -67,8 +70,8 @@ mytheme <- theme(
   plot.subtitle = element_text(size = 14),
   axis.title = element_blank(),
   axis.text = element_text(size = 10)
-)
-land_colour <- c('antiquewhite1')
+  )
+  land_colour <- c('antiquewhite1')
 
 # ggspatial adds scale bar and compass, location is set to tr (=top right)
 # the width_hint defines bar width. 
