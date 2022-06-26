@@ -23,6 +23,8 @@ library(dplyr)
 library(ggplot2)
 library(phangorn)
 library(tidyr)
+library(ggtree)
+library(tidyr)
 
 # Load the Load Alignment function
 
@@ -109,8 +111,7 @@ tree$tip.label
 
 p <- ggtree(tree) + geom_text(aes(label=node), size = 3, hjust = 1, vjust = 1)
 p
-library(ggtree)
-library(tidyr)
+
 
 tiplab <-
 
@@ -134,17 +135,17 @@ tree$tip.label <- meta$taxa
 
 #~~ Specific colour palette
 
-pal <- c("mediumblue", # blue 046C9A
+pal <- c("lightseagreen", #  turquoise
+         "mediumblue", # blue 046C9A 
          "#9523d6", #  purple #984ea3
          "maroon2", #  pink ae017e
-         "darkorange2", #  dark orange (change from dark green 1b7837)
-         "#e41a1c", # red
+         "darkorange2", #  dark orange
+         "#e41a1c", # red 
          "goldenrod",   #  yellow
          "#1d91c0", #  light blue
          "turquoise4", #  dark turquoise 35978f
-         "lightseagreen", #  turquoise
-         "#a65628", #  brown
-         "#ff7f00")
+         "#a65628"
+         ) 
 
 #~~ Plot tree with species colour coded
 
@@ -160,7 +161,7 @@ p <- ggtree(tree, color = "black", size = 0.4) %<+% meta +
                                "*R.jayakari*",
                                "*R.lionotus*",
                                "*R.palpebratus*",
-                               "*R.vareigatus*"),
+                               "*A.vareigatus*"),
                     name = "Species", guide = "none") +
   xlim(0, 0.25)
 
@@ -172,6 +173,13 @@ d <- p$data
 d <- d[!d$isTip,]
 d$label <- as.numeric(d$label)
 d <- d[d$label > 0.95,]
+
+# To find out node support for branches
+#d2 <-d[d$label < 0.95,]
+#d2
+#p2 <- p +  geom_nodelab(data = d, aes(x=branch))
+#p2
+
 
 #~~ Add bootstrap support to tree
 
@@ -185,5 +193,5 @@ p
 
 # Save figure
 
-ggsave("Figures/Species_Phylogeny_regions.png", height = 7, width = 9)
+ggsave("Figures/Species_Phylogeny_regions_2.pdf", height = 7, width = 9)
 
