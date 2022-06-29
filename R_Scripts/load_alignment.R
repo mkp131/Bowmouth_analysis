@@ -1,3 +1,4 @@
+# Alignment for Tree function
 #~~ Check alignment
 
 # Function, where db is the reference database, unkown is the unknown sequence you want, and align is whether you want R to perfrom a sequence alignment
