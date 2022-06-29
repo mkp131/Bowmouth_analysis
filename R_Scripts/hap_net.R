@@ -1,4 +1,4 @@
-# Script to look at haplotypes
+# Script to look at haplotypes: create in R, no colour
 
 # install.packages("ape")
 # install.packages("pegas")
