@@ -1,6 +1,10 @@
 # Bowmouth Analysis
 
 This project is part of the data analysis for my dissertation in Bowmouth guitarfish for a MVetSci in Conservation Medicine at the University of Edinburgh. 
+This also contains the code used for the analyses and figures in the following manuscript:
+"Population structure and genetic diversity of the Critically Endangered bowmouth guitarfish (Rhina ancylostomus) in the Northwest Indian Ocean" (by Marja J. Kipperman, Rima W. Jabado, Alifa Bintha Haque, Daniel Fernando, P.A.D.L Anjani, Julia L.Y. Spaet, Emily Humble)
+
+https://www.biorxiv.org/content/10.1101/2024.03.15.585225v3
 
 I have used R for most of my analyses. 
 
