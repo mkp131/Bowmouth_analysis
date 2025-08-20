@@ -1,3 +1,5 @@
+<a href="https://doi.org/10.5281/zenodo.16911779"><img src="https://zenodo.org/badge/492563985.svg" alt="DOI"></a>
+
 # Bowmouth Analysis
 
 This project is part of the data analysis for my dissertation in Bowmouth guitarfish for a MVetSci in Conservation Medicine at the University of Edinburgh. 
