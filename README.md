@@ -4,7 +4,8 @@ This project is part of the data analysis for my dissertation in Bowmouth guitar
 This also contains the code used for the analyses and figures in the following manuscript:
 "Population structure and genetic diversity of the Critically Endangered bowmouth guitarfish (Rhina ancylostomus) in the Northwest Indian Ocean" (by Marja J. Kipperman, Rima W. Jabado, Alifa Bintha Haque, Daniel Fernando, P.A.D.L Anjani, Julia L.Y. Spaet, Emily Humble)
 
-https://www.biorxiv.org/content/10.1101/2024.03.15.585225v3
+Preprint: https://www.biorxiv.org/content/10.1101/2024.03.15.585225v3
+Peer reviewed and recommended by PCI in Evolutionary Biology: https://evolbiol.peercommunityin.org/articles/rec?id=792
 
 I have used R for most of my analyses. 
 
